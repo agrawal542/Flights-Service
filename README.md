@@ -46,3 +46,6 @@ Lets take a look inside the `src` folder
  ```
  npm run dev
  ```
+
+ - Like movie booking
+ - Like airplan booking
