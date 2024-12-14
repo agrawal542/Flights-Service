@@ -10,7 +10,6 @@ const info = (req, res, next) => {
         });
 }
 
-
 module.exports = {
     info
 }
