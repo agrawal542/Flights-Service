@@ -1,5 +1,4 @@
 const { StatusCodes } = require("http-status-codes");
-const { Logger } = require("../config");
 const AppError = require("../utils/errors/app-error");
 
 
@@ -19,7 +18,6 @@ class CrudRepository {
                 id: data,
             },
         });
-
         if (!response) {
             throw new AppError('Not able to found the resource', StatusCodes.NOT_FOUND)
         }

@@ -51,7 +51,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-    ]);    
+    ]);
   },
 
   async down(queryInterface, Sequelize) {
@@ -59,10 +59,17 @@ module.exports = {
      * Add commands to revert seed here.
      */
     await queryInterface.bulkDelete('Airplanes', {
-      [Op.or]: [
-        { modelNumber: 'airbus320' },
-        { modelNumber: 'airbus380' }
-      ]
+      modelNumber: {
+        [Op.in]: [
+          'airbusA320neo',
+          'airbusA321neo',
+          'airbusA320ceo',
+          'boeing737-800',
+          'boeing737MAX8',
+          'boeing737MAX200',
+          'atr72-600',
+        ],
+      },
     });
-  }
+  },
 };
