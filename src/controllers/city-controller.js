@@ -19,5 +19,37 @@ async function createCity(req, res) {
     }
 }
 
+/**
+ * DELETE /cities/:id
+ */
+async function deleteCity(req, res) {
+    try {
+        const city = await CityService.deleteCity(req.params.id)
+        SuccessResponse.data = city;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(error.statusCode).json(ErrorResponse)
+    }
+}
 
-module.exports = { createCity }
+/**
+ * UDPATE /cities/:id
+ */
+async function updateCity(req, res) {
+    try {
+        const id = req.params.id;
+        const data = {
+            name: req.body.name
+        }
+        const city = await CityService.updateCity(id, data)
+        SuccessResponse.data = city;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(error.statusCode).json(ErrorResponse)
+    }
+}
+
+
+module.exports = { createCity, deleteCity, updateCity }

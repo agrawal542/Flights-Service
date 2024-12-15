@@ -69,7 +69,7 @@ async function deleteAirplane(req, res) {
  */
 async function updateAirplane(req, res) {
     try {
-        const id = req.body.id;
+        const id = req.params.id;
         const data = {
             capacity: req.body.capacity
         }
