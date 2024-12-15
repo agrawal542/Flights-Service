@@ -1,7 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const { AirplaneService } = require("../services");
 const { SuccessResponse, ErrorResponse } = require("../utils/comman");
-const AppError = require("../utils/errors/app-error");
 
 /**
  * POST: /airplanes
@@ -14,18 +13,72 @@ async function createAirplane(req, res) {
             capacity: req.body.capacity
         })
         SuccessResponse.data = airplane;
-        SuccessResponse.message = "Succesfully create an airplane";
-        bnne
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
-        if (error.name == 'ReferenceError') {
-            ErrorResponse.error = new AppError([error.message], StatusCodes.INTERNAL_SERVER_ERROR);
-        } else {
-            ErrorResponse.error = error
-        }
-        ErrorResponse.message = "Something went wrong while creating airplane.";
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse)
+        ErrorResponse.error = error;
+        return res.status(error.statusCode).json(ErrorResponse)
     }
 }
 
-module.exports = { createAirplane }
+/**
+ * GETs: /airplanes
+ */
+async function getAirplanes(req, res) {
+    try {
+        const airplane = await AirplaneService.getAirplanes()
+        SuccessResponse.data = airplane;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(error.statusCode).json(ErrorResponse)
+    }
+}
+
+/**
+ * GETs: /airplanes/:id
+ */
+async function getAirplane(req, res) {
+    try {
+        const airplane = await AirplaneService.getAirplane(req.params.id)
+        SuccessResponse.data = airplane;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(error.statusCode).json(ErrorResponse)
+    }
+}
+
+
+
+/**
+ * DELETE /airplanes/:id
+ */
+async function deleteAirplane(req, res) {
+    try {
+        const airplane = await AirplaneService.deleteAirplane(req.params.id)
+        SuccessResponse.data = airplane;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(error.statusCode).json(ErrorResponse)
+    }
+}
+
+/**
+ * UDPATE /airplanes
+ */
+async function updateAirplane(req, res) {
+    try {
+        const id = req.body.id;
+        const data = {
+            capacity: req.body.capacity
+        }
+        const airplane = await AirplaneService.updateAirplane(id, data)
+        SuccessResponse.data = airplane;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error
+        return res.status(error.statusCode).json(ErrorResponse)
+    }
+}
+module.exports = { createAirplane, getAirplanes, getAirplane, deleteAirplane, updateAirplane }

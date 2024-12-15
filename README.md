@@ -47,5 +47,44 @@ Lets take a look inside the `src` folder
  npm run dev
  ```
 
- - Like movie booking
- - Like airplan booking
+ Like movie booking
+ Like airplan booking
+
+
+
+- IndiGo (Airbus Fleet)
+  ```
+  Model Number: airbusA320neo
+  Capacity: 186
+
+  Model Number: airbusA321neo
+  Capacity: 240
+
+  Model Number: airbusA320ceo
+  Capacity: 180
+  ```
+
+- Air India Express (Boeing Fleet)
+  ```
+  Model Number: boeing737-800
+  Capacity: 189
+
+  Model Number: boeing737MAX8
+  Capacity: 189
+  ```
+
+
+- Akasa Air (Boeing Fleet)
+  ```
+  Model Number: boeing737MAX8
+  Capacity: 189
+
+  Model Number: boeing737MAX200
+  Capacity: 197
+  ````
+
+- Additional Planes Often Used in Regional Operations
+```
+  Model Number: atr72-600 (Used by IndiGo for regional routes)
+  Capacity: 72
+```
