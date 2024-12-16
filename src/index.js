@@ -17,8 +17,22 @@ app.use("/api", apiRoutes)
 //     })
 // })
 
-app.listen(ServerConfig.PORT, () => {
+app.listen(ServerConfig.PORT, async () => {
     console.log(`Server is running on PORT : ${ServerConfig.PORT}`)
     // Logger.info("Succesfully started the server")
+
+    // bad code alert
+    // const { Airport, City } = require('./models');
+    // const noida = await City.findByPk(15);
+    // console.log(noida)
+
+    // const delhiAirport = await noida.createAirport({ name: "Noida Airport", code: "NID" })
+    // console.log(delhiAirport)
+
+    // await City.destroy({
+    //     where: {
+    //         id: 15
+    //     }
+    // })
 })
 

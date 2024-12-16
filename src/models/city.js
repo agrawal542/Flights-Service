@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // One city can have many airports
+      City.hasMany(models.Airport, {
+        foreignKey: 'cityId', // Matches the foreign key in the Airport model
+        onDelete: "CASCADE", // Deletes airports when a city is deleted
+        onUpdate: "CASCADE", // Updates airports when city ID changes
+      });
     }
   }
   City.init({
