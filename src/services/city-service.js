@@ -1,12 +1,12 @@
 const { StatusCodes } = require('http-status-codes');
-const { CityReposity } = require('../repositories');
+const { CityRepository } = require('../repositories');
 const AppError = require('../utils/errors/app-error');
 
-const cityReposity = new CityReposity();
+const cityRepository = new CityRepository();
 
 async function createCity(data) {
     try {
-        const city = await cityReposity.create(data);
+        const city = await cityRepository.create(data);
         return city;
     } catch (error) {
         if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
@@ -21,7 +21,7 @@ async function createCity(data) {
 
 async function deleteCity(id) {
     try {
-        const city = await cityReposity.destroy(id);
+        const city = await cityRepository.destroy(id);
         return city;
     } catch (error) {
         if (error.statusCode == StatusCodes.NOT_FOUND) {
@@ -33,7 +33,7 @@ async function deleteCity(id) {
 
 async function updateCity(id, data) {
     try {
-        const city = await cityReposity.update(id, data);
+        const city = await cityRepository.update(id, data);
         return city;
     } catch (error) {
         if (error.statusCode == StatusCodes.NOT_FOUND) {

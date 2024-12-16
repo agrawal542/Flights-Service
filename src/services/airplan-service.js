@@ -1,12 +1,12 @@
 const { StatusCodes } = require('http-status-codes');
-const { AirplaneReposity } = require('../repositories');
+const { AirplaneRepository } = require('../repositories');
 const AppError = require('../utils/errors/app-error');
 
-const airplaneReposity = new AirplaneReposity();
+const airplaneRepository = new AirplaneRepository();
 
 async function createAirplane(data) {
     try {
-        const airplane = await airplaneReposity.create(data);
+        const airplane = await airplaneRepository.create(data);
         return airplane;
     } catch (error) {
         if (error.name === 'SequelizeValidationError') {
@@ -21,7 +21,7 @@ async function createAirplane(data) {
 
 async function getAirplanes() {
     try {
-        const airplane = await airplaneReposity.getAll();
+        const airplane = await airplaneRepository.getAll();
         return airplane;
     } catch (error) {
         throw new AppError('Cannot fetch data of all the airplanes', StatusCodes.INTERNAL_SERVER_ERROR)
@@ -30,7 +30,7 @@ async function getAirplanes() {
 
 async function getAirplane(id) {
     try {
-        const airplane = await airplaneReposity.get(id);
+        const airplane = await airplaneRepository.get(id);
         return airplane;
     } catch (error) {
         if (error.statusCode == StatusCodes.NOT_FOUND) {
@@ -44,7 +44,7 @@ async function getAirplane(id) {
 
 async function deleteAirplane(id) {
     try {
-        const airplane = await airplaneReposity.destroy(id);
+        const airplane = await airplaneRepository.destroy(id);
         return airplane;
     } catch (error) {
         if (error.statusCode == StatusCodes.NOT_FOUND) {
@@ -56,7 +56,7 @@ async function deleteAirplane(id) {
 
 async function updateAirplane(id, data) {
     try {
-        const airplane = await airplaneReposity.update(id, data);
+        const airplane = await airplaneRepository.update(id, data);
         return airplane;
     } catch (error) {
         if (error.statusCode == StatusCodes.NOT_FOUND) {
