@@ -8,12 +8,24 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // One city can have multiple airports
+
+      // multiple airports belongs to one city
       this.belongsTo(models.City, {
         foreignKey: 'cityId',
         onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       });
+
+      // A Airport can have many departing and arriving flights
+      this.hasMany(models.Flight, {
+        foreignKey: 'departureAirportCode', // Flights departing from this airport
+        onDelete: "CASCADE",
+      });
+
+      this.hasMany(models.Flight, {
+        foreignKey: 'arrivalAirportCode', // Flights arriving at this airport
+        onDelete: "CASCADE",
+      });
+      
     }
   }
   Airport.init({

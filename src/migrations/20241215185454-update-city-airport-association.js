@@ -15,7 +15,6 @@ module.exports = {
         field: 'id', // Referenced column
       },
       onDelete: 'CASCADE', // Optional: Specify behavior on deletion
-      onUpdate: 'CASCADE', // Optional: Specify behavior on update
     });
   },
 

@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       City.hasMany(models.Airport, {
         foreignKey: 'cityId', // Matches the foreign key in the Airport model
         onDelete: "CASCADE", // Deletes airports when a city is deleted
-        onUpdate: "CASCADE", // Updates airports when city ID changes
       });
     }
   }
