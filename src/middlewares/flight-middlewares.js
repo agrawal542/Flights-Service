@@ -10,7 +10,6 @@ const REQUIRED_FIELDS = [
   { key: "arrivalTime", message: "Arrival time is required." },
   { key: "departureTime", message: "Departure time is required." },
   { key: "price", message: "Price is required." },
-  { key: "totalSeats", message: "Total seats are required." },
 ];
 
 function validCreateRequest(req, res, next) {

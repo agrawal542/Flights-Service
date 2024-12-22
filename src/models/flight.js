@@ -13,12 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.Airplane, {
         foreignKey: 'airplaneId',
+        as: "airplane_details"
       });
       this.belongsTo(models.Airport, {
         foreignKey: 'departureAirportCode',
+        as: "airport_departure_details",
       });
       this.belongsTo(models.Airport, {
         foreignKey: 'arrivalAirportCode',
+        as: "airport_arrival_details",
       });
     }
   }
@@ -62,10 +65,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       type: DataTypes.STRING
     },
-    totalSeats:
+    totalSeats: // total remaining sheet
     {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     sequelize,
