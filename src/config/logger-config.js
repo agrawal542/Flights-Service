@@ -5,6 +5,7 @@ const CustomFormat = printf(({ level, message, timestamp }) => {
     return `${timestamp} ${level}: ${message}`;
 });
 
+//test
 const logger = createLogger({
     format: combine(
         timestamp({ format: "YYYY-MM-DD HH:mm::ss" }),
