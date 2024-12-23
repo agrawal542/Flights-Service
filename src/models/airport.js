@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.City, {
         foreignKey: 'cityId',
         onDelete: "CASCADE",
+        as: "city_details"
       });
 
       // A Airport can have many departing and arriving flights

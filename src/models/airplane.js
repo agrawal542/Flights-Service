@@ -12,7 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       // one airplane can have multiple flights
       this.hasMany(models.Flight, {
-        foreignKey: 'airplaneId', // Matches the foreign key in the Airport model
+        foreignKey: 'airplaneId', // Matches   the foreign key in the Airport model
+        onDelete: "CASCADE", // Deletes airports when a city is deleted
+      });
+      this.hasMany(models.Seat, {
+        foreignKey: 'airplaneId', // Matches   the foreign key in the Airport model
         onDelete: "CASCADE", // Deletes airports when a city is deleted
       });
     }
