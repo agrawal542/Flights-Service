@@ -4,7 +4,7 @@ const info = (req, res, next) => {
     return res.status(StatusCodes.OK).json(
         {
             sussess: true,
-            message: 'Ok! Working Fine.',
+            message: 'OK! Flight service is running smoothly.',
             error: {},
             data: {},
         });
